@@ -2,7 +2,7 @@
 {
     public class NavigationBar
     {
-        public int Id { get; set; }
+        public int Id { get; set; }//qwerty
         public string MenuName{ get; set; }
         public bool IsFooter { get; set; }
         public bool IsHeader { get; set; }
