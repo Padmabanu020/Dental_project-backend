@@ -1,6 +1,8 @@
 ﻿
 using Dental_project.Models;
 using Dental_project.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 
 
@@ -13,15 +15,15 @@ namespace Dental_project.Handlers
         {
             _repository = repository;
         }
-        public async Task<List<HeroSection>> GetHeroSection()
+        public async Task<IActionResult> GetHeroSection()
         {
             var data = await _repository.GetHeroSection();
 
-            if (data == null)
+            if (data == null )
             {
-                throw new Exception("no data found in the table Contact!!");
+                return new NoContentResult();
             }
-            return data;
+            return  new OkObjectResult(data);
         }
     }
 }

@@ -29,44 +29,60 @@ namespace Dental_project.Controllers
 
 
         [HttpGet("ContactDetails")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(Contact), 200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetContactUs()
         {
-            Console.WriteLine("testing1");
+           
             var data = await _ContactHandler.GetContactUs();
-            Console.WriteLine("testing");
+            if (data == null)
+            {
+                return NotFound("Data not found");
+            }
+
             return Ok(data);
         }
 
         [HttpGet("HeroSection")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(HeroSection),200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetHeroSections()
         {
             var data = await _HeroSectionHandlers.GetHeroSection();
+            if (data == null)
+            {
+                return NotFound("Data not found");
+            }
             return Ok(data);
 
         }
         [HttpGet("NavigationBar")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(Icon),200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> GetNavigationBar()
+        public async Task<IActionResult> GetNavigationBar() 
         {
             var data = await _NavigationBarHandlers.GetNavigationBar();
+            if (data == null)
+            {
+                return NotFound("Data not found");
+            }
             return Ok(data);
 
         }
         [HttpGet("Icon")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(NavigationBar),200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetIcon()
         {
             var data = await _IconHandlers.GetIcon();
+            if (data == null)
+            {
+                return NotFound("Data not found");
+            }
             return Ok(data);
 
         }
